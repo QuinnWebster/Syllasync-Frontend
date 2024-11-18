@@ -1,0 +1,161 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* Main Container for PDF Dropzone */
+.pdf-dropzone-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: #f3f3f3;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  margin: 30px auto;
+  border: 2px solid #237fe2;
+  color: #2d3f52;
+  font: 16px Arial, sans-serif;
+}
+
+/* Dropzone Styles */
+.dropzone {
+  border: 2px dashed #237fe2;
+  background-color: #f8f9fa;
+  padding: 30px;
+  text-align: center;
+  border-radius: 12px;
+  transition: border-color 0.3s, background-color 0.3s;
+  width: 80%;
+  cursor: pointer;
+}
+
+/* Submit Button Styles */
+.submit-button {
+  background-color: #237fe2;
+  border: none;
+  color: #f3f3f3;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin: 30px 0;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  font-size: 0.8em;
+  padding: 5px 10px;
+  font-family: "Roboto", sans-serif;
+  font-size: 1rem;
+  padding: 20px 30px;
+}
+
+.submit-button:hover {
+  background-color: #2d74c0;
+  transform: translateY(-2px);
+}
+
+/* Extracted Text Container */
+.extracted-text-container {
+  margin-top: 20px;
+  width: 100%;
+}
+
+/* Disabled Button Styles */
+.submit-button:disabled {
+  background-color: #bdc3c7;
+  color: #7f8c8d;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.greeting {
+  max-width: 60%;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 36px;
+  font-weight: bold;
+}
+
+.text-container {
+  max-width: 60%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.text-container h3 {
+  margin: 0;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.instructions {
+  text-align: center;
+  max-width: 60%;
+  margin: 0 auto;
+  font-size: 22px;
+}
+
+.signed-out {
+  max-width: 80%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.file-info {
+  margin: 20px 0;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.file-thumbnail {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 108px;
+  padding: 8px;
+  margin: 8px auto;
+  border-radius: 8px;
+  border: 1px solid #237fe2;
+  background-color: #f8f9fa;
+  position: relative; /* Positioning needed for the overlay */
+}
+
+.pdf-thumbnail {
+  width: 60px;
+  height: auto;
+  margin-bottom: 4px;
+  border: 1px solid #465681;
+  border-radius: 4px;
+  position: relative;
+}
+
+.pdf-label {
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  background-color: #d32f2f;
+  color: #fff;
+  font-size: 10px;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-weight: bold;
+  text-align: center;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.loading {
+  display: flex;
+  flex-direction: column; /* Align items vertically */
+  justify-content: center; /* Center vertically */
+  align-items: center; /* Center horizontally */
+  text-align: center; /* Center the text inside the <p> element */
+  padding: 20px 0;
+}
+
+.loading p {
+  font-size: 24px;
+  font-weight: bold;
+}
