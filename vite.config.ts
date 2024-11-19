@@ -7,10 +7,10 @@ export default defineConfig({
   build: {
     rollupOptions: {
       onwarn(warning, warn) {
-        // Ignore unused external import warnings
+        // Ignore certain Rollup warnings to prevent build from failing
         if (warning.code === "UNUSED_EXTERNAL_IMPORT") return;
-        // Print other warnings
-        warn(warning);
+        if (warning.code === "CIRCULAR_DEPENDENCY") return; // Ignore circular dependencies
+        warn(warning); // Otherwise, log the warning
       },
     },
   },
