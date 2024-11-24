@@ -50,24 +50,24 @@ function LandingPage() {
   }, [loading]);
 
   async function signOut(): Promise<void> {
-    console.log("Trying to sign out");
-    await supabase.auth.signOut();
+    // console.log("Trying to sign out");
+    // await supabase.auth.signOut();
   }
 
   async function googleSignIn(): Promise<void> {
-    console.log("Trying to sign in with Google");
-    const { error } = await supabase.auth.signInWithOAuth({
-      provider: "google",
-      options: {
-        scopes:
-          "https://www.googleapis.com/auth/calendar https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile",
-        queryParams: { prompt: "select_account" },
-      },
-    });
-    if (error) {
-      alert("Error logging into Google provider with Supabase");
-      console.log(error);
-    }
+    // console.log("Trying to sign in with Google");
+    // const { error } = await supabase.auth.signInWithOAuth({
+    //   provider: "google",
+    //   options: {
+    //     scopes:
+    //       "https://www.googleapis.com/auth/calendar https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile",
+    //     queryParams: { prompt: "select_account" },
+    //   },
+    // });
+    // if (error) {
+    //   alert("Error logging into Google provider with Supabase");
+    //   console.log(error);
+    // }
   }
 
   // Function to handle the drop of the PDF
