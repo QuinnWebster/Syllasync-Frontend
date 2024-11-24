@@ -7,25 +7,27 @@ import { useDropzone, Accept } from "react-dropzone";
 import pdfToText from "react-pdftotext"; // Importing the library
 import { useNavigate } from "react-router-dom";
 import "./landingPage.css";
-import axios from "axios";
+// import axios from "axios";
 import HashLoader from "react-spinners/HashLoader";
 
 type AcceptedFile = File[];
 
-type Event = {
-  summary: string;
-  location: string;
-  description: string;
-  start: {
-    dateTime: string;
-    timeZone: string;
-  };
-  end: {
-    dateTime: string;
-    timeZone: string;
-  };
-  colorId: string;
-};
+const apiUrl = import.meta.env.VITE_API_URL;
+
+// type Event = {
+//   summary: string;
+//   location: string;
+//   description: string;
+//   start: {
+//     dateTime: string;
+//     timeZone: string;
+//   };
+//   end: {
+//     dateTime: string;
+//     timeZone: string;
+//   };
+//   colorId: string;
+// };
 
 function LandingPage() {
   const session = useSession(); // Tokens
@@ -136,20 +138,28 @@ function LandingPage() {
     setLoading(true);
 
     try {
-      const response = await axios.post(
-        `http://localhost:5000/api/getAiResponse`,
-        {
-          content: pdfText,
-        }
-      );
+      console.log("Sending request to the server");
+      const res = await fetch(apiUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          text: "By the end of the course, students will understand matrix operations, solve systems of linear equations, apply vector spaces and linear transformations, and analyze eigenvalues and eigenvectors, with key dates including the course start on September 4, 2024, assignments due on September 25, October 16, and November 13, a midterm on October 30, and a final exam on December 11.",
+        }),
+      });
+      console.log("Got response");
 
-      console.log("Response", response.data.message);
+      if (!res.ok) {
+        throw new Error("Failed to fetch data from the server");
+      }
 
-      const aiResponse = response.data.message;
+      const response = await res.json();
 
-      const calendarObjects = aiResponse.objects;
+      const calendarObjects = JSON.parse(response.joke).objects;
 
-      const notes = aiResponse.additionalNotes;
+      console.log("Response", calendarObjects);
+      console.log("Type", typeof calendarObjects);
 
       if (!isListOfEvents(calendarObjects)) {
         console.error("Invalid response from the AI");
@@ -157,24 +167,7 @@ function LandingPage() {
         return;
       }
 
-      // const calendarObjects = [
-      //   {
-      //     summary: "Quiz 1",
-      //     location: "",
-      //     description: "Quiz 1 for section 1",
-      //     start: {
-      //       dateTime: "2024-11-05T09:00:00",
-      //       timeZone: "Canada/Pacific",
-      //     },
-      //     end: {
-      //       dateTime: "2024-11-05T09:50:00",
-      //       timeZone: "Canada/Pacific",
-      //     },
-      //     colorId: "1",
-      //   },
-      // ];
-
-      // const notes = "My notes";
+      const notes = "My notes";
 
       setLoading(false);
 
@@ -186,11 +179,65 @@ function LandingPage() {
         },
       });
     } catch (error) {
-      setLoading(false);
       console.error("Error fetching data:", error);
-      alert("There was an error sending the data. Please try again.");
     }
   };
+
+  // try {
+  //   const response = await axios.post(
+  //     `http://localhost:5000/api/getAiResponse`,
+  //     {
+  //       content: pdfText,
+  //     }
+  //   );
+
+  //   console.log("Response", response.data.message);
+
+  //   const aiResponse = response.data.message;
+
+  //   const calendarObjects = aiResponse.objects;
+
+  //   const notes = aiResponse.additionalNotes;
+
+  //   if (!isListOfEvents(calendarObjects)) {
+  //     console.error("Invalid response from the AI");
+  //     alert("Invalid response from the AI. Please try again.");
+  //     return;
+  //   }
+
+  //   // const calendarObjects = [
+  //   //   {
+  //   //     summary: "Quiz 1",
+  //   //     location: "",
+  //   //     description: "Quiz 1 for section 1",
+  //   //     start: {
+  //   //       dateTime: "2024-11-05T09:00:00",
+  //   //       timeZone: "Canada/Pacific",
+  //   //     },
+  //   //     end: {
+  //   //       dateTime: "2024-11-05T09:50:00",
+  //   //       timeZone: "Canada/Pacific",
+  //   //     },
+  //   //     colorId: "1",
+  //   //   },
+  //   // ];
+
+  //   // const notes = "My notes";
+
+  //   setLoading(false);
+
+  //   navigate("/events/events", {
+  //     state: {
+  //       message: calendarObjects,
+  //       notes: notes,
+  //       session: session,
+  //     },
+  //   });
+  // } catch (error) {
+  //   setLoading(false);
+  //   console.error("Error fetching data:", error);
+  //   alert("There was an error sending the data. Please try again.");
+  // }
 
   return (
     <div>
