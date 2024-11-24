@@ -2,26 +2,36 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
 export default defineConfig({
+  // Base path for deployed assets, required for GitHub Pages
   base: "/syllasync_frontend/",
+
+  // Local dev server settings
   server: {
     proxy: {
+      // Proxy API calls to your Render backend during development
       "/aiResponse": {
         target: "https://test-ejxy.onrender.com",
         changeOrigin: true,
-        secure: false,
+        secure: false, // Use this only if your target server uses self-signed certificates
       },
     },
   },
+
+  // Vite plugins
   plugins: [react()],
+
+  // Build configuration
   build: {
-    outDir: "dist", // Ensures the build output goes into the 'dist' directory
+    // Specify output directory (default is already 'dist', so this is optional)
+    outDir: "dist",
     rollupOptions: {
-      input: "index.html", // Ensure the entry point is your 'index.html'
+      // Define the entry point for the build process
+      input: "index.html",
+      // Optional: Suppress specific warnings
       onwarn(warning, warn) {
-        // Ignore certain Rollup warnings to prevent build from failing
         if (warning.code === "UNUSED_EXTERNAL_IMPORT") return;
-        if (warning.code === "CIRCULAR_DEPENDENCY") return; // Ignore circular dependencies
-        warn(warning); // Otherwise, log the warning
+        if (warning.code === "CIRCULAR_DEPENDENCY") return;
+        warn(warning); // Log other warnings normally
       },
     },
   },

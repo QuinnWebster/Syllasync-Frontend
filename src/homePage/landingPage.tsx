@@ -107,25 +107,25 @@ function LandingPage() {
     accept: ".pdf" as unknown as Accept,
   });
 
-  function isListOfEvents(aiResponse: any): aiResponse is Event[] {
-    return (
-      Array.isArray(aiResponse) &&
-      aiResponse.every(
-        (ele) =>
-          typeof ele.summary === "string" &&
-          typeof ele.location === "string" &&
-          typeof ele.description === "string" &&
-          typeof ele.start === "object" &&
-          typeof ele.end === "object" &&
-          typeof ele.colorId === "string" &&
-          typeof ele.start.dateTime === "string" &&
-          typeof ele.start.timeZone === "string" &&
-          typeof ele.end.dateTime === "string" &&
-          typeof ele.end.timeZone === "string" &&
-          Object.keys(ele).length === 6
-      )
-    );
-  }
+  // function isListOfEvents(aiResponse: any): aiResponse is Event[] {
+  //   return (
+  //     Array.isArray(aiResponse) &&
+  //     aiResponse.every(
+  //       (ele) =>
+  //         typeof ele.summary === "string" &&
+  //         typeof ele.location === "string" &&
+  //         typeof ele.description === "string" &&
+  //         typeof ele.start === "object" &&
+  //         typeof ele.end === "object" &&
+  //         typeof ele.colorId === "string" &&
+  //         typeof ele.start.dateTime === "string" &&
+  //         typeof ele.start.timeZone === "string" &&
+  //         typeof ele.end.dateTime === "string" &&
+  //         typeof ele.end.timeZone === "string" &&
+  //         Object.keys(ele).length === 6
+  //     )
+  //   );
+  // }
 
   const handleSubmit = async () => {
     if (!pdfText.trim()) {
@@ -163,11 +163,11 @@ function LandingPage() {
       console.log("Response", calendarObjects);
       console.log("Type", typeof calendarObjects);
 
-      if (!isListOfEvents(calendarObjects)) {
-        console.error("Invalid response from the AI");
-        alert("Invalid response from the AI. Please try again.");
-        return;
-      }
+      // if (!isListOfEvents(calendarObjects)) {
+      //   console.error("Invalid response from the AI");
+      //   alert("Invalid response from the AI. Please try again.");
+      //   return;
+      // }
 
       const notes = "My notes";
 
