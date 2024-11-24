@@ -137,6 +137,8 @@ function LandingPage() {
 
     setLoading(true);
 
+    console.log("Sending request to the server");
+
     try {
       console.log("Sending request to the server");
       const res = await fetch(apiUrl, {
