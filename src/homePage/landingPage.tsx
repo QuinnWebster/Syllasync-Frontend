@@ -30,7 +30,8 @@ const apiUrl = import.meta.env.VITE_API_URL;
 // };
 
 function LandingPage() {
-  const session = useSession(); // Tokens
+  // const session = useSession(); // Tokens
+  const session = true;
   const supabase = useSupabaseClient(); // Talk to Supabase
   const [fileName, setFileName] = useState<string>("");
   const [isFileSelected, setIsFileSelected] = useState<boolean>(false);
@@ -262,12 +263,12 @@ function LandingPage() {
       {session ? (
         <>
           <br />
-          <h1 className="greeting">
+          {/* <h1 className="greeting">
             Hey{" "}
             {session.user.user_metadata?.full_name ||
               session.user.user_metadata?.name ||
               session.user.email}
-          </h1>
+          </h1> */}
         </>
       ) : (
         <></>
