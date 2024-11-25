@@ -52,33 +52,33 @@ function HandleGoogle() {
     setShowButtons(false);
     await wait(2000);
 
-    // try {
-    //   for (let i = 0; i < events.length; i++) {
-    //     console.log("Event", events[i]);
-    //     await fetch(
-    //       "https://www.googleapis.com/calendar/v3/calendars/primary/events",
-    //       {
-    //         method: "POST",
-    //         headers: {
-    //           Authorization: "Bearer " + session.provider_token, // Access token for Google
-    //         },
-    //         // body: JSON.stringify(event[0]),
-    //         body: JSON.stringify(events[i]),
-    //       }
-    //     );
-    //     // .then((data) => data.json())
-    //     // .then((data) => {
-    //     //   myEvents.push(data);
-    //     // });
-    //   }
-    //   setLoading(false);
-    //   navigate("/allDone");
-    // } catch (error) {
-    //   setLoading(false);
+    try {
+      for (let i = 0; i < events.length; i++) {
+        console.log("Event", events[i]);
+        await fetch(
+          "https://www.googleapis.com/calendar/v3/calendars/primary/events",
+          {
+            method: "POST",
+            headers: {
+              Authorization: "Bearer " + session.provider_token, // Access token for Google
+            },
+            // body: JSON.stringify(event[0]),
+            body: JSON.stringify(events[i]),
+          }
+        );
+        // .then((data) => data.json())
+        // .then((data) => {
+        //   myEvents.push(data);
+        // });
+      }
+      setLoading(false);
+      navigate("/allDone");
+    } catch (error) {
+      setLoading(false);
 
-    //   console.log("Error creating event", error);
-    //   alert("Error creating event");
-    // }
+      console.log("Error creating event", error);
+      alert("Error creating event");
+    }
   }
 
   return (
@@ -89,13 +89,13 @@ function HandleGoogle() {
           <>
             <h2>testing</h2>
             <>
-              {/* <h2 className="greeting">
+              <h2 className="greeting">
                 <br></br>
                 Hey{" "}
                 {session.user.user_metadata?.full_name ||
                   session.user.user_metadata?.name ||
                   session.user.email}
-              </h2> */}
+              </h2>
             </>
             <br></br>
             <div
