@@ -30,8 +30,8 @@ const apiUrl = import.meta.env.VITE_API_URL;
 // };
 
 function LandingPage() {
-  // const session = useSession(); // Tokens
-  const session = true;
+  const session = useSession(); // Tokens
+  // const session = true;
   const supabase = useSupabaseClient(); // Talk to Supabase
   const [fileName, setFileName] = useState<string>("");
   const [isFileSelected, setIsFileSelected] = useState<boolean>(false);
@@ -51,24 +51,24 @@ function LandingPage() {
   }, [loading]);
 
   async function signOut(): Promise<void> {
-    // console.log("Trying to sign out");
-    // await supabase.auth.signOut();
+    console.log("Trying to sign out");
+    await supabase.auth.signOut();
   }
 
   async function googleSignIn(): Promise<void> {
-    // console.log("Trying to sign in with Google");
-    // const { error } = await supabase.auth.signInWithOAuth({
-    //   provider: "google",
-    //   options: {
-    //     scopes:
-    //       "https://www.googleapis.com/auth/calendar https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile",
-    //     queryParams: { prompt: "select_account" },
-    //   },
-    // });
-    // if (error) {
-    //   alert("Error logging into Google provider with Supabase");
-    //   console.log(error);
-    // }
+    console.log("Trying to sign in with Google");
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: "google",
+      options: {
+        scopes:
+          "https://www.googleapis.com/auth/calendar https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile",
+        queryParams: { prompt: "select_account" },
+      },
+    });
+    if (error) {
+      alert("Error logging into Google provider with Supabase");
+      console.log(error);
+    }
   }
 
   // Function to handle the drop of the PDF
@@ -263,12 +263,12 @@ function LandingPage() {
       {session ? (
         <>
           <br />
-          {/* <h1 className="greeting">
+          <h1 className="greeting">
             Hey{" "}
             {session.user.user_metadata?.full_name ||
               session.user.user_metadata?.name ||
               session.user.email}
-          </h1> */}
+          </h1>
         </>
       ) : (
         <></>
