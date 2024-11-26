@@ -4,6 +4,8 @@ import "./showList.css"; // Ensure to import your CSS file
 import MiniWindow from "./miniWindow"; // Import your modal component
 
 type Event = {
+  id: string;
+
   summary: string;
   description: string;
   start: {

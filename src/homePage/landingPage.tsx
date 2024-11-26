@@ -162,9 +162,6 @@ function LandingPage() {
 
       const calendarObjects = JSON.parse(response.joke).objects;
 
-      console.log("Response", calendarObjects);
-      console.log("Type", typeof calendarObjects);
-
       if (!isListOfEvents(calendarObjects)) {
         console.error("Invalid response from the AI");
         alert("Invalid response from the AI. Please try again.");

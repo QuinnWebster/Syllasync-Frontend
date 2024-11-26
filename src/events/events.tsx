@@ -1,17 +1,12 @@
-// import "./App.css";
 import { useState } from "react";
-
 import { useLocation } from "react-router-dom";
-
 import ShowCalendar from "./showCalender";
 import EventCard from "./showList";
-
 import { useNavigate } from "react-router-dom";
-
 import HashLoader from "react-spinners/HashLoader";
-
 import "./events.css";
 import Banner from "./../components/banner";
+
 const wait = (ms: any) => new Promise((resolve) => setTimeout(resolve, ms));
 
 type Event = {
@@ -34,8 +29,6 @@ function HandleGoogle() {
   const message = location.state?.message;
   // const notes = location.state?.notes;
 
-  console.log("getitng here");
-
   const navigate = useNavigate();
 
   const [isCalendarView, setIsCalendarView] = useState(false);
@@ -43,10 +36,12 @@ function HandleGoogle() {
   const [loading, setLoading] = useState<boolean>(false);
   const [showButtons, setShowButtons] = useState<boolean>(true);
 
+  //Switch between calendar view and list view
   function toggleView() {
     setIsCalendarView(!isCalendarView);
   }
 
+  //Add events to Google Calendar
   async function createCalendarEvent() {
     setLoading(true);
     setShowButtons(false);
@@ -54,7 +49,7 @@ function HandleGoogle() {
 
     try {
       for (let i = 0; i < events.length; i++) {
-        console.log("Event", events[i]);
+        // console.log("Event", events[i]);
         await fetch(
           "https://www.googleapis.com/calendar/v3/calendars/primary/events",
           {
@@ -62,14 +57,9 @@ function HandleGoogle() {
             headers: {
               Authorization: "Bearer " + session.provider_token, // Access token for Google
             },
-            // body: JSON.stringify(event[0]),
             body: JSON.stringify(events[i]),
           }
         );
-        // .then((data) => data.json())
-        // .then((data) => {
-        //   myEvents.push(data);
-        // });
       }
       setLoading(false);
       navigate("/allDone");

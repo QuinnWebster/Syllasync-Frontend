@@ -68,7 +68,6 @@ const Banner: React.FC<BannerProps> = ({
           marginLeft: "auto",
         }}
       >
-        {/* Conditionally render buttons only if both googleSignIn and signOut exist */}
         {!signInText && wantButtons && googleSignIn && signOut && (
           <>
             <button
@@ -105,7 +104,6 @@ const Banner: React.FC<BannerProps> = ({
           </>
         )}
 
-        {/* If signInText is true, only show the "Sign In" button */}
         {signInText && googleSignIn && (
           <button
             style={{

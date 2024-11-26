@@ -54,10 +54,10 @@ const styles: Record<string, CSSProperties> = {
   },
   guideContainer: {
     display: "grid",
-    gridTemplateColumns: "repeat(4, minmax(250px, 1fr))", // Wider columns
+    gridTemplateColumns: "repeat(4, minmax(250px, 1fr))",
     gap: "1.5rem",
-    justifyContent: "center", // Center the entire grid horizontally
-    alignContent: "center", // Center the grid content vertically (optional)
+    justifyContent: "center",
+    alignContent: "center",
   },
 
   step: {
