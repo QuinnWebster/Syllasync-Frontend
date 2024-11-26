@@ -4,7 +4,7 @@ import { useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
 import { useState, useEffect } from "react";
 import pdf_prev from "./../images/pdf-img.jfif";
 import { useDropzone, Accept } from "react-dropzone";
-import pdfToText from "react-pdftotext"; // Importing the library
+import pdfToText from "react-pdftotext";
 import { useNavigate } from "react-router-dom";
 import "./landingPage.css";
 // import axios from "axios";
@@ -31,7 +31,6 @@ const apiUrl = import.meta.env.VITE_API_URL;
 
 function LandingPage() {
   const session = useSession(); // Tokens
-  // const session = true;
   const supabase = useSupabaseClient(); // Talk to Supabase
   const [fileName, setFileName] = useState<string>("");
   const [isFileSelected, setIsFileSelected] = useState<boolean>(false);
@@ -39,8 +38,10 @@ function LandingPage() {
   const [loading, setLoading] = useState<boolean>(false);
   const [dotCount, setDotCount] = useState(1);
 
+  //Allows you to navigate to a different page
   const navigate = useNavigate();
 
+  //Used for the loading animation
   useEffect(() => {
     if (loading) {
       const interval = setInterval(() => {
@@ -50,11 +51,13 @@ function LandingPage() {
     }
   }, [loading]);
 
+  //Sign out
   async function signOut(): Promise<void> {
     console.log("Trying to sign out");
     await supabase.auth.signOut();
   }
 
+  //Uses supabaase to sign in with google
   async function googleSignIn(): Promise<void> {
     console.log("Trying to sign in with Google");
     const { error } = await supabase.auth.signInWithOAuth({
@@ -71,7 +74,7 @@ function LandingPage() {
     }
   }
 
-  // Function to handle the drop of the PDF
+  // Handles the file drop
   function onDrop(acceptedFiles: AcceptedFile): void {
     const file = acceptedFiles[0];
     if (file.type !== "application/pdf") {
@@ -108,26 +111,28 @@ function LandingPage() {
     accept: ".pdf" as unknown as Accept,
   });
 
-  // function isListOfEvents(aiResponse: any): aiResponse is Event[] {
-  //   return (
-  //     Array.isArray(aiResponse) &&
-  //     aiResponse.every(
-  //       (ele) =>
-  //         typeof ele.summary === "string" &&
-  //         typeof ele.location === "string" &&
-  //         typeof ele.description === "string" &&
-  //         typeof ele.start === "object" &&
-  //         typeof ele.end === "object" &&
-  //         typeof ele.colorId === "string" &&
-  //         typeof ele.start.dateTime === "string" &&
-  //         typeof ele.start.timeZone === "string" &&
-  //         typeof ele.end.dateTime === "string" &&
-  //         typeof ele.end.timeZone === "string" &&
-  //         Object.keys(ele).length === 6
-  //     )
-  //   );
-  // }
+  //Checks if the response from the AI is a list of events
+  function isListOfEvents(aiResponse: any): aiResponse is Event[] {
+    return (
+      Array.isArray(aiResponse) &&
+      aiResponse.every(
+        (ele) =>
+          typeof ele.summary === "string" &&
+          typeof ele.location === "string" &&
+          typeof ele.description === "string" &&
+          typeof ele.start === "object" &&
+          typeof ele.end === "object" &&
+          typeof ele.colorId === "string" &&
+          typeof ele.start.dateTime === "string" &&
+          typeof ele.start.timeZone === "string" &&
+          typeof ele.end.dateTime === "string" &&
+          typeof ele.end.timeZone === "string" &&
+          Object.keys(ele).length === 6
+      )
+    );
+  }
 
+  //On submit pdf
   const handleSubmit = async () => {
     if (!pdfText.trim()) {
       alert(
@@ -138,20 +143,16 @@ function LandingPage() {
 
     setLoading(true);
 
-    console.log("Sending request to the server");
-
     try {
-      console.log("Sending request to the server");
       const res = await fetch(apiUrl, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          text: "By the end of the course, students will understand matrix operations, solve systems of linear equations, apply vector spaces and linear transformations, and analyze eigenvalues and eigenvectors, with key dates including the course start on September 4, 2024, assignments due on September 25, October 16, and November 13, a midterm on October 30, and a final exam on December 11.",
+          text: pdfText,
         }),
       });
-      console.log("Got response");
 
       if (!res.ok) {
         throw new Error("Failed to fetch data from the server");
@@ -164,11 +165,11 @@ function LandingPage() {
       console.log("Response", calendarObjects);
       console.log("Type", typeof calendarObjects);
 
-      // if (!isListOfEvents(calendarObjects)) {
-      //   console.error("Invalid response from the AI");
-      //   alert("Invalid response from the AI. Please try again.");
-      //   return;
-      // }
+      if (!isListOfEvents(calendarObjects)) {
+        console.error("Invalid response from the AI");
+        alert("Invalid response from the AI. Please try again.");
+        return;
+      }
 
       const notes = "My notes";
 
@@ -182,6 +183,7 @@ function LandingPage() {
         },
       });
     } catch (error) {
+      setLoading(false);
       console.error("Error fetching data:", error);
     }
   };
