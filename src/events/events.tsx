@@ -32,7 +32,7 @@ function HandleGoogle() {
   const location = useLocation();
   const session = location.state?.session;
   const message = location.state?.message;
-  const notes = location.state?.notes;
+  // const notes = location.state?.notes;
 
   console.log("getitng here");
 
@@ -87,7 +87,6 @@ function HandleGoogle() {
       <div>
         {session ? (
           <>
-            <h2>testing</h2>
             <>
               <h2 className="greeting">
                 <br></br>
@@ -147,9 +146,9 @@ function HandleGoogle() {
                 <EventCard events={events} setEvents={setEvents} />
               )}
             </div>
-            <div className="notes">
+            {/* <div className="notes">
               <h2>{notes ? notes : ""}</h2>
-            </div>
+            </div> */}
             <br></br>
             <br></br>
             <div>
