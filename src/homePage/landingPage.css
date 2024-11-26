@@ -4,7 +4,6 @@ body {
   padding: 0;
 }
 
-/* Main Container for PDF Dropzone */
 .pdf-dropzone-container {
   display: flex;
   flex-direction: column;
@@ -20,7 +19,6 @@ body {
   font: 16px Arial, sans-serif;
 }
 
-/* Dropzone Styles */
 .dropzone {
   border: 2px dashed #237fe2;
   background-color: #f8f9fa;
@@ -32,7 +30,6 @@ body {
   cursor: pointer;
 }
 
-/* Submit Button Styles */
 .submit-button {
   background-color: #237fe2;
   border: none;
@@ -56,13 +53,11 @@ body {
   transform: translateY(-2px);
 }
 
-/* Extracted Text Container */
 .extracted-text-container {
   margin-top: 20px;
   width: 100%;
 }
 
-/* Disabled Button Styles */
 .submit-button:disabled {
   background-color: #bdc3c7;
   color: #7f8c8d;
@@ -120,7 +115,7 @@ body {
   border-radius: 8px;
   border: 1px solid #237fe2;
   background-color: #f8f9fa;
-  position: relative; /* Positioning needed for the overlay */
+  position: relative;
 }
 
 .pdf-thumbnail {
@@ -148,10 +143,10 @@ body {
 
 .loading {
   display: flex;
-  flex-direction: column; /* Align items vertically */
-  justify-content: center; /* Center vertically */
-  align-items: center; /* Center horizontally */
-  text-align: center; /* Center the text inside the <p> element */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
   padding: 20px 0;
 }
 

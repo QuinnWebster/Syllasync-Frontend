@@ -1,13 +1,11 @@
 import "./allDone.css"; // Import the CSS file for styling
-import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import Banner from "./components/banner";
 
 function AllDone() {
-  const location = useLocation();
-  const { message, event } = location.state || {}; // Destructure the state safely
+  // const { message, event } = location.state || {};
 
-  console.log("All Done message:", message, "Event:", event);
+  // console.log("All Done message:", message, "Event:", event);
 
   const navigate = useNavigate();
 

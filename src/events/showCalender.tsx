@@ -29,8 +29,6 @@ type ShowCalendarProps = {
 };
 
 const ShowCalendar: React.FC<ShowCalendarProps> = ({ events, setEvents }) => {
-  // Format events for the calendar
-
   const [showMiniWindow, setMiniWindow] = useState(false);
   const [currentEvent, setCurrentEvent] = useState({});
   const [isEditing, setIsEditing] = useState(false);
@@ -38,34 +36,33 @@ const ShowCalendar: React.FC<ShowCalendarProps> = ({ events, setEvents }) => {
   function expandEvent(event: Event) {
     // Set the original event to display in the modal
     setCurrentEvent(event);
-    setMiniWindow(true); // Show the modal
+    setMiniWindow(true); // Show the mini window
   }
 
-  // Function to close the modal
+  // Close the mini window
   function closeModal() {
     setIsEditing(false);
-    setMiniWindow(false); // Hide the modal
+    setMiniWindow(false);
   }
 
+  //Format the events for the calendar
   const formattedEvents = events.map((event) => ({
-    id: event.id, // Assuming each event has a unique id
+    id: event.id,
     title: event.summary,
     start: new Date(event.start.dateTime), // Convert to Date object
     end: new Date(event.end.dateTime), // Convert to Date object
-    // Store original event properties for MiniWindow
     originalEvent: event,
   }));
 
   return (
     <div className="calendar-container">
-      {/* Render the calendar */}
       <Calendar
         localizer={localizer}
         events={formattedEvents}
         startAccessor="start"
         endAccessor="end"
         style={{ height: 500, margin: "50px" }}
-        onSelectEvent={(event) => expandEvent(event.originalEvent)} // Make the event
+        onSelectEvent={(event) => expandEvent(event.originalEvent)}
         selectable
       />
       {showMiniWindow && (

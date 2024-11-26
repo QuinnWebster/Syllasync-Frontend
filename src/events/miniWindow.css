@@ -1,53 +1,48 @@
-/* Modal container */
 .modal {
-  display: none; /* Hidden by default */
+  display: none;
   position: fixed;
-  z-index: 1000; /* High z-index to overlay other content */
-  left: 50%; /* Center the modal horizontally */
-  top: 50%; /* Center the modal vertically */
-  transform: translate(-50%, -50%); /* Offset by half its width and height */
-  border-radius: 12px; /* Rounded corners for a softer look */
-  overflow: hidden; /* Prevents content overflow */
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2); /* Deeper shadow for elevation effect */
+  z-index: 1000;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
 }
 
-/* Show the modal when needed */
 .modal.show {
   display: block;
 }
 
-/* Modal content */
 .modal-content {
-  background-color: #ffffff; /* White background for a clean look */
-  padding: 20px 30px; /* More padding for better spacing */
-  border: 3px solid #177de9; /* Blue border */
-  border-radius: 12px; /* Match border radius with the modal */
-  width: 450px; /* Adjust width */
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Softer shadow for depth */
-  color: #333; /* Dark text color for readability */
+  background-color: #ffffff;
+  padding: 20px 30px;
+  border: 3px solid #177de9;
+  border-radius: 12px;
+  width: 450px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  color: #333;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    "Helvetica Neue", Arial, sans-serif; /* Consistent font family */
-  font-size: 16px; /* Slightly larger font size */
-  line-height: 1.5; /* Better line spacing */
+    "Helvetica Neue", Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
 }
 
-/* Close button */
 .close {
-  color: #888; /* Close button color */
+  color: #888;
   float: right;
   font-size: 28px;
   font-weight: bold;
-  transition: color 0.3s ease; /* Smooth transition for color */
+  transition: color 0.3s ease;
 }
 
 .close:hover,
 .close:focus {
-  color: #cf1d1d; /* Highlight color on hover */
+  color: #cf1d1d;
   text-decoration: none;
-  cursor: pointer; /* Change cursor on hover */
+  cursor: pointer;
 }
 
-/* Optional - Darkened backdrop */
 .modal::before {
   content: "";
   position: fixed;
@@ -55,28 +50,27 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.7); /* Darker semi-transparent backdrop */
-  z-index: -1; /* Behind the modal content */
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: -1;
 }
 
-/* Edit input field styling */
 .edit-input {
-  width: 100%; /* Full width of the modal content */
-  padding: 8px; /* Add padding for a comfortable input area */
-  margin-top: 5px; /* Small margin to separate from labels */
-  margin-bottom: 15px; /* Space between input fields */
-  border: 2px solid #177de9; /* Match modal border color */
-  border-radius: 6px; /* Rounded corners for consistency */
-  font-size: 16px; /* Match font size with modal content */
-  font-family: inherit; /* Inherit modal font family */
-  color: #333; /* Text color */
-  background-color: #f9f9f9; /* Light background for input area */
-  outline: none; /* Remove default outline */
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1); /* Soft inner shadow for depth */
-  transition: border-color 0.3s ease; /* Smooth transition for focus effect */
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  border: 2px solid #177de9;
+  border-radius: 6px;
+  font-size: 16px;
+  font-family: inherit;
+  color: #333;
+  background-color: #f9f9f9;
+  outline: none;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: border-color 0.3s ease;
 }
 
 .edit-input:focus {
-  border-color: #0056b3; /* Darker blue border on focus */
-  background-color: #ffffff; /* Lighter background on focus */
+  border-color: #0056b3;
+  background-color: #ffffff;
 }

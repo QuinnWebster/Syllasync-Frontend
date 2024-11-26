@@ -1,12 +1,12 @@
 .all-done-container {
   display: flex;
   flex-direction: column;
-  align-items: center; /* Center content horizontally */
-  justify-content: center; /* Center content vertically */
-  min-height: 100vh; /* Full height of the viewport */
-  background-color: #f9f9f9; /* Light background color */
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #f9f9f9;
   padding: 20px;
-  text-align: center; /* Center-align text */
+  text-align: center;
 }
 
 .all-done-title {
@@ -14,19 +14,19 @@
 }
 
 .all-done-title h1 {
-  font-size: 2.5rem; /* Larger font size for the title */
-  color: #177de9; /* Primary color */
+  font-size: 2.5rem;
+  color: #177de9;
 }
 
 .all-done-title h2 {
-  font-size: 1.75rem; /* Subtitle size */
-  color: #333; /* Dark text color */
+  font-size: 1.75rem;
+  color: #333;
 }
 
 .all-done-message {
   margin: 20px 0;
-  font-size: 1.2rem; /* Comfortable font size */
-  color: #555; /* Medium gray text */
+  font-size: 1.2rem;
+  color: #555;
 }
 
 .all-done-link {
@@ -34,36 +34,36 @@
 }
 
 .calendar-link {
-  display: inline-block; /* Block link */
-  padding: 10px 20px; /* Padding around the link */
-  background-color: #177de9; /* Button background color */
-  color: #fff; /* Button text color */
-  border-radius: 5px; /* Rounded corners */
-  text-decoration: none; /* Remove underline */
-  transition: background-color 0.3s; /* Smooth transition */
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #177de9;
+  color: #fff;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s;
 }
 
 .calendar-link:hover {
-  background-color: #155a8a; /* Darker shade on hover */
+  background-color: #155a8a;
 }
 
 .all-done-footer {
   margin-top: 30px;
-  font-size: 1rem; /* Regular footer font size */
-  color: #777; /* Lighter gray for footer text */
+  font-size: 1rem;
+  color: #777;
 }
 
 .Back {
-  background-color: #237fe2; /* Use a vibrant blue */
+  background-color: #237fe2;
   border: none;
   color: #f3f3f3;
-  padding: 14px 24px; /* Increased padding for comfort */
+  padding: 14px 24px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 18px; /* Larger font size for better readability */
-  margin: 30px 0; /* Consistent margin with other elements */
-  border-radius: 10px; /* Rounded button */
+  font-size: 18px;
+  margin: 30px 0;
+  border-radius: 10px;
   cursor: pointer;
-  transition: background-color 0.3s, transform 0.2s; /* Added transition for hover effect */
+  transition: background-color 0.3s, transform 0.2s;
 }

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { Card, CardContent, Typography, Grid } from "@mui/material"; // Ensure to import Grid from MUI
-import "./showList.css"; // Ensure to import your CSS file
-import MiniWindow from "./miniWindow"; // Import your modal component
+import { Card, CardContent, Typography, Grid } from "@mui/material";
+import "./showList.css";
+import MiniWindow from "./miniWindow";
 
 type Event = {
   id: string;
@@ -30,12 +30,12 @@ const ShowList: React.FC<ShowListProps> = ({ events, setEvents }) => {
 
   function closeModal() {
     setIsEditing(false);
-    setMiniWindow(false); // Hide the modal
+    setMiniWindow(false);
   }
 
   function expandEvent(event: Event) {
-    setCurrentEvent(event); // Set the event to display
-    setMiniWindow(true); // Show the modal
+    setCurrentEvent(event);
+    setMiniWindow(true);
   }
 
   return (
