@@ -185,6 +185,11 @@ function LandingPage() {
     }
   };
 
+  const handlePrivacyClick = () => {
+    // Navigate to the privacy policy
+    window.location.href = "/privacy-policy.html";
+  };
+
   // try {
   //   const response = await axios.post(
   //     `http://localhost:5000/api/getAiResponse`,
@@ -263,7 +268,7 @@ function LandingPage() {
         <>
           <br />
           <h1 className="greeting">
-            Hey{" "}
+            Hey
             {session.user.user_metadata?.full_name ||
               session.user.user_metadata?.name ||
               session.user.email}
@@ -329,6 +334,7 @@ function LandingPage() {
                   </div>
                 )}
               </div>
+              <button onClick={handlePrivacyClick}>View Privacy Policy</button>
             </div>
             <Guide></Guide>
           </>
