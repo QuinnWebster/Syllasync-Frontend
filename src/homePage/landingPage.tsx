@@ -187,7 +187,7 @@ function LandingPage() {
 
   const handlePrivacyClick = () => {
     // Navigate to the privacy policy
-    window.location.href = "/privacy-policy.html";
+    window.location.href = "/consent.html";
   };
 
   // try {
@@ -334,9 +334,9 @@ function LandingPage() {
                   </div>
                 )}
               </div>
-              <button onClick={handlePrivacyClick}>View Privacy Policy</button>
             </div>
             <Guide></Guide>
+            <button onClick={handlePrivacyClick}>View Privacy Policy</button>
           </>
         ) : (
           <div className="signed-out">
