@@ -103,31 +103,31 @@ function LandingPage() {
     setLoading(true);
 
     try {
-      const calendarObjects = [
-        {
-          subject: "My Subject",
-          start: "2022-01-01T00:00:00",
-          end: "2022-01-01T01:00:00",
-          description: "My Description",
-        },
-      ];
-      // const res = await fetch(apiUrl, {
-      //   method: "POST",
-      //   headers: {
-      //     "Content-Type": "application/json",
+      // const calendarObjects = [
+      //   {
+      //     subject: "My Subject",
+      //     start: "2022-01-01T00:00:00",
+      //     end: "2022-01-01T01:00:00",
+      //     description: "My Description",
       //   },
-      //   body: JSON.stringify({
-      //     text: pdfText,
-      //   }),
-      // });
+      // ];
+      const res = await fetch(apiUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          text: pdfText,
+        }),
+      });
 
-      // if (!res.ok) {
-      //   throw new Error("Failed to fetch data from the server");
-      // }
+      if (!res.ok) {
+        throw new Error("Failed to fetch data from the server");
+      }
 
-      // const response = await res.json();
+      const response = await res.json();
 
-      // const calendarObjects = JSON.parse(response.joke).objects;
+      const calendarObjects = JSON.parse(response.joke).objects;
 
       console.log("The response from the AI is:", calendarObjects);
 
