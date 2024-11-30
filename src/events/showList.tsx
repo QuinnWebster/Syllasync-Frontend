@@ -40,19 +40,26 @@ const ShowList: React.FC<ShowListProps> = ({ events, setEvents }) => {
         {events.map((event, index) => (
           <Grid item xs={12} sm={6} md={4} key={index}>
             <Card className="event-card" elevation={3}>
-              <CardContent onClick={() => expandEvent(event)}>
+              <CardContent
+                onClick={() => expandEvent(event)}
+                style={{ maxHeight: "250px", overflow: "auto" }}
+              >
                 <Typography
                   variant="h6"
                   component="div"
                   className="event-title"
+                  sx={{ paddingBottom: "10px" }}
                 >
-                  {event.subject}{" "}
+                  {event.subject}
                 </Typography>
-                <br></br>
-                <Typography color="text.secondary" className="event-date">
+                <Typography
+                  color="text.secondary"
+                  className="event-date"
+                  sx={{ paddingBottom: "10px" }}
+                >
                   {new Date(event.start).toLocaleString()}
                 </Typography>
-                <br></br>
+                <br />
                 <Typography color="text.secondary" className="event-location">
                   {event.description}
                 </Typography>
