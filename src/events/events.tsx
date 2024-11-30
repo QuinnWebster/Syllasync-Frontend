@@ -30,7 +30,7 @@ function HandleGoogle() {
   const [events, setEvents] = useState<Event[]>(message);
   const [loading, setLoading] = useState<boolean>(false);
   const [showButtons, setShowButtons] = useState<boolean>(true);
-  const [email, setEmail] = useState<string>("");
+  const [recipientEmail, setRecipientEmail] = useState<string>("");
 
   //Switch between calendar view and list view
   function toggleView() {
@@ -38,11 +38,11 @@ function HandleGoogle() {
   }
 
   function handleEmailChange(e: any) {
-    setEmail(e.target.value);
+    setRecipientEmail(e.target.value);
   }
 
   function getEmail() {
-    console.log(email);
+    console.log(recipientEmail);
   }
 
   return (
@@ -67,7 +67,10 @@ function HandleGoogle() {
                 >
                   {isCalendarView ? "List View" : "Preview Calendar"}
                 </button>
-                <SendEmail eventsQ={events} recipientEmail={email}></SendEmail>
+                <SendEmail
+                  eventsQ={events}
+                  recipientEmail={recipientEmail}
+                ></SendEmail>
               </>
             )}
             {loading && (
