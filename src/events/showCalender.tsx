@@ -15,7 +15,6 @@ type Event = {
   start: string; // ISO date format: "2024-09-04T00:00:00"
   end: string; // ISO date format: "2024-09-04T01:00:00"
   description: string;
-  location: string;
 };
 
 type ShowCalendarProps = {

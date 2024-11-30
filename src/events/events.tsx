@@ -15,7 +15,6 @@ type Event = {
   start: any;
   end: any;
   description: string;
-  location: string;
 };
 
 function HandleGoogle() {

@@ -8,7 +8,6 @@ type Event = {
   start: any;
   end: any;
   description: string;
-  location: string;
 };
 
 type ShowListProps = {

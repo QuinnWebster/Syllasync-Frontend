@@ -137,9 +137,9 @@ function LandingPage() {
 
       const response = await res.json();
 
-      console.log("The response from the AI is:", response);
-
       const calendarObjects = JSON.parse(response.joke).objects;
+
+      console.log("The response from the AI is:", calendarObjects);
 
       if (!isListOfEvents(calendarObjects)) {
         console.error("Invalid response from the AI");
