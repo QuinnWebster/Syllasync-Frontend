@@ -11,17 +11,11 @@ import SendEmail from "./sendEmail";
 // const wait = (ms: any) => new Promise((resolve) => setTimeout(resolve, ms));
 
 type Event = {
-  id: string;
-  summary: string;
+  subject: string;
+  start: any;
+  end: any;
   description: string;
-  start: {
-    dateTime: string;
-    timeZone: string;
-  };
-  end: {
-    dateTime: string;
-    timeZone: string;
-  };
+  location: string;
 };
 
 function HandleGoogle() {

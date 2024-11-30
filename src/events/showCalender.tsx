@@ -9,18 +9,13 @@ import MiniWindow from "./miniWindow"; // Import your modal component
 // Initialize the localizer
 const localizer = momentLocalizer(moment);
 
+// Define the event type
 type Event = {
-  id: string;
-  summary: string;
+  subject: string; // The title of the event
+  start: string; // ISO date format: "2024-09-04T00:00:00"
+  end: string; // ISO date format: "2024-09-04T01:00:00"
   description: string;
-  start: {
-    dateTime: string;
-    timeZone: string;
-  };
-  end: {
-    dateTime: string;
-    timeZone: string;
-  };
+  location: string;
 };
 
 type ShowCalendarProps = {
@@ -30,7 +25,7 @@ type ShowCalendarProps = {
 
 const ShowCalendar: React.FC<ShowCalendarProps> = ({ events, setEvents }) => {
   const [showMiniWindow, setMiniWindow] = useState(false);
-  const [currentEvent, setCurrentEvent] = useState({});
+  const [currentEvent, setCurrentEvent] = useState<Event | null>(null);
   const [isEditing, setIsEditing] = useState(false);
 
   function expandEvent(event: Event) {
@@ -45,27 +40,26 @@ const ShowCalendar: React.FC<ShowCalendarProps> = ({ events, setEvents }) => {
     setMiniWindow(false);
   }
 
-  //Format the events for the calendar
+  // Format the events for the calendar
   const formattedEvents = events.map((event) => ({
-    id: event.id,
-    title: event.summary,
-    start: new Date(event.start.dateTime), // Convert to Date object
-    end: new Date(event.end.dateTime), // Convert to Date object
-    originalEvent: event,
+    title: event.subject, // Use subject as the event title
+    start: new Date(event.start), // Convert ISO date string to Date object
+    end: new Date(event.end), // Convert ISO date string to Date object
+    originalEvent: event, // Preserve the original event structure
   }));
 
   return (
     <div className="calendar-container">
       <Calendar
         localizer={localizer}
-        events={formattedEvents}
+        events={formattedEvents} // Pass the formatted events
         startAccessor="start"
         endAccessor="end"
         style={{ height: 500, margin: "50px" }}
         onSelectEvent={(event) => expandEvent(event.originalEvent)}
         selectable
       />
-      {showMiniWindow && (
+      {showMiniWindow && currentEvent && (
         <MiniWindow
           show={showMiniWindow}
           handleClose={closeModal}
