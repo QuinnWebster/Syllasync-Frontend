@@ -12,20 +12,12 @@ type AcceptedFile = File[];
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
-// type Event = {
-//   summary: string;
-//   location: string;
-//   description: string;
-//   start: {
-//     dateTime: string;
-//     timeZone: string;
-//   };
-//   end: {
-//     dateTime: string;
-//     timeZone: string;
-//   };
-//   colorId: string;
-// };
+type Event = {
+  subject: string;
+  start: any;
+  end: any;
+  description: string;
+};
 
 function LandingPage() {
   const [fileName, setFileName] = useState<string>("");
@@ -94,8 +86,7 @@ function LandingPage() {
           typeof ele.start === "string" &&
           typeof ele.end === "string" &&
           typeof ele.description === "string" &&
-          typeof ele.location === "string" &&
-          Object.keys(ele).length === 5
+          Object.keys(ele).length === 4
       )
     );
   }
