@@ -67,7 +67,7 @@ function HandleGoogle() {
                 >
                   {isCalendarView ? "List View" : "Preview Calendar"}
                 </button>
-                <SendEmail eventsQ={events} email={email}></SendEmail>
+                <SendEmail eventsQ={events} recipientEmail={email}></SendEmail>
               </>
             )}
             {loading && (
