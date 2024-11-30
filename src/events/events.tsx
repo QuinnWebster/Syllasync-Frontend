@@ -8,6 +8,7 @@ import "./events.css";
 import Banner from "./../components/banner";
 import SendEmail from "./sendEmail";
 import TextField from "@mui/material/TextField";
+import { Button } from "@mui/material";
 
 // const wait = (ms: any) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -38,6 +39,10 @@ function HandleGoogle() {
 
   function handleEmailChange(e: any) {
     setEmail(e.target.value);
+  }
+
+  function getEmail() {
+    console.log(email);
   }
 
   return (
@@ -73,6 +78,7 @@ function HandleGoogle() {
               </div>
             )}
           </div>
+          <Button onClick={getEmail}></Button>
           <TextField
             label="Enter your email"
             variant="outlined"
