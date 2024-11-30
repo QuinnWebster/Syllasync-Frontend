@@ -8,12 +8,15 @@ const apiUrl = import.meta.env.VITE_API_URL_MAIL;
 
 type SendEmailProps = {
   eventsQ: any;
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const SendEmail = ({ eventsQ }: SendEmailProps) => {
+const SendEmail = ({ eventsQ, setLoading }: SendEmailProps) => {
   const navigate = useNavigate();
   const [recipientEmail, setRecipientEmail] = useState<string>("");
   const [showPopup, setShowPopup] = useState<boolean>(false);
+
+  const wait = (ms: any) => new Promise((resolve) => setTimeout(resolve, ms));
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setRecipientEmail(e.target.value);
@@ -28,6 +31,10 @@ const SendEmail = ({ eventsQ }: SendEmailProps) => {
   };
 
   const sendEvents = async (e: React.FormEvent) => {
+    setLoading(true);
+
+    wait(2000); // Simulate a 2-second delay
+
     e.preventDefault();
 
     if (!recipientEmail.trim()) {

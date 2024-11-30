@@ -26,8 +26,6 @@ function HandleGoogle() {
   const [isCalendarView, setIsCalendarView] = useState(false);
   const [events, setEvents] = useState<Event[]>(message);
   const [loading, setLoading] = useState<boolean>(false);
-  const [showButtons, setShowButtons] = useState<boolean>(true);
-  const [recipientEmail, setRecipientEmail] = useState<string>("");
 
   //Switch between calendar view and list view
   function toggleView() {
@@ -47,18 +45,16 @@ function HandleGoogle() {
               gap: "20px",
             }}
           >
-            {showButtons && (
-              <>
-                <button
-                  className="addEvent"
-                  onClick={() => toggleView()}
-                  disabled={loading}
-                >
-                  {isCalendarView ? "List View" : "Preview Calendar"}
-                </button>
-                <SendEmail eventsQ={events} />
-              </>
-            )}
+            <>
+              <button
+                className="addEvent"
+                onClick={() => toggleView()}
+                disabled={loading}
+              >
+                {isCalendarView ? "List View" : "Preview Calendar"}
+              </button>
+              <SendEmail eventsQ={events} setLoading={setLoading} />
+            </>
             {loading && (
               <div className="loading">
                 <HashLoader color={"#123abc"} loading={loading} size={50} />
