@@ -39,12 +39,6 @@ function HandleGoogle() {
       <Banner signInText={false} wantButtons={true} />
       <div>
         <>
-          <>
-            <h2 className="greeting">
-              <br></br>
-              Hey{" "}
-            </h2>
-          </>
           <br></br>
           <div
             style={{
@@ -87,10 +81,6 @@ function HandleGoogle() {
               <EventCard events={events} setEvents={setEvents} />
             )}
           </div>
-
-          {/* <div className="notes">
-              <h2>{notes ? notes : ""}</h2>
-            </div> */}
           <br></br>
           <br></br>
           <div>

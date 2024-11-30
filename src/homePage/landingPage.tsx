@@ -164,13 +164,12 @@ function LandingPage() {
       <Banner signInText={false} wantButtons={true} />
       <>
         <br />
-        <h1 className="greeting">Hey</h1>
 
         <br />
 
         <div className="text-container">
           <h3>
-            Welcome to Syllasyncc, the tool that puts your syllabus in your
+            Welcome to Syllasync, the tool that puts your syllabus in your
             calendar!
           </h3>
         </div>

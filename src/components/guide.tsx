@@ -1,5 +1,5 @@
 import { CSSProperties } from "react";
-import { FaUpload, FaCalendarAlt, FaListUl, FaGoogle } from "react-icons/fa";
+import { FaUpload, FaCalendarAlt, FaListUl, FaCalendar } from "react-icons/fa";
 
 const Guide = () => {
   return (
@@ -28,10 +28,11 @@ const Guide = () => {
           </p>
         </div>
         <div style={styles.step}>
-          <FaGoogle style={styles.icon} />
-          <h4 style={styles.stepTitle}>Add to Google Calendar</h4>
+          <FaCalendar style={styles.icon} />
+          <h4 style={styles.stepTitle}>Get Your Events via Email</h4>
           <p style={styles.description}>
-            Add the extracted events to your Google Calendar.
+            Enter your email address to receive a detailed list of your events.
+            You can easily add them to your calendar from there.
           </p>
         </div>
       </div>

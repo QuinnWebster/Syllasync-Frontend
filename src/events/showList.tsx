@@ -48,10 +48,11 @@ const ShowList: React.FC<ShowListProps> = ({ events, setEvents }) => {
                 >
                   {event.subject}{" "}
                 </Typography>
+                <br></br>
                 <Typography color="text.secondary" className="event-date">
                   {new Date(event.start).toLocaleString()}
                 </Typography>
-
+                <br></br>
                 <Typography color="text.secondary" className="event-location">
                   {event.description}
                 </Typography>
