@@ -100,7 +100,7 @@ function MiniWindow({
         </div>
 
         <p className="event-info">
-          <strong>Start Date:</strong> {new Date(event.start).toLocaleString()}
+          <strong>Start Date</strong> {new Date(event.start).toLocaleString()}
         </p>
         <p className="event-info">
           <strong>End:</strong> {new Date(event.end).toLocaleString()}
