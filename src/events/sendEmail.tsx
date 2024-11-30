@@ -68,7 +68,7 @@ const SendEmail = (eventsQ: any, recipientEmail: string) => {
         },
         body: JSON.stringify({
           events,
-          recipientEmail: recipientEmail,
+          recipientEmail: "quinnwebster@uvic.ca",
         }),
       });
 
