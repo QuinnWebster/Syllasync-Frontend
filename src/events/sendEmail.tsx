@@ -16,7 +16,8 @@ const SendEmail = ({ eventsQ, setLoading }: SendEmailProps) => {
   const [recipientEmail, setRecipientEmail] = useState<string>("");
   const [showPopup, setShowPopup] = useState<boolean>(false);
 
-  const wait = (ms: any) => new Promise((resolve) => setTimeout(resolve, ms));
+  const wait = (ms: number) =>
+    new Promise((resolve) => setTimeout(resolve, ms));
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setRecipientEmail(e.target.value);
@@ -31,10 +32,6 @@ const SendEmail = ({ eventsQ, setLoading }: SendEmailProps) => {
   };
 
   const sendEvents = async (e: React.FormEvent) => {
-    setLoading(true);
-
-    await wait(5000); // Simulate a 2-second delay
-
     e.preventDefault();
 
     if (!recipientEmail.trim()) {
@@ -42,7 +39,11 @@ const SendEmail = ({ eventsQ, setLoading }: SendEmailProps) => {
       return;
     }
 
+    setLoading(true); // Start loading
+
     try {
+      await wait(5000); // Simulate a delay of 5 seconds
+
       const response = await fetch(apiUrl, {
         method: "POST",
         headers: {
@@ -61,6 +62,8 @@ const SendEmail = ({ eventsQ, setLoading }: SendEmailProps) => {
       navigate("/allDone");
     } catch (error) {
       console.error(error);
+    } finally {
+      setLoading(false); // Stop loading after the operation
     }
   };
 
