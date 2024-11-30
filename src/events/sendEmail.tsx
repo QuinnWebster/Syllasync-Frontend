@@ -12,8 +12,8 @@ const SendEmail = ({ eventsQ, recipientEmail }: SendEmailProps) => {
   const navigate = useNavigate();
 
   const sendEvents = async (e: React.FormEvent) => {
-    // console.log("The events are ", events);
-    // console.log("The type of events is ", typeof events);
+    console.log("The events are ", eventsQ);
+    console.log("The type of events is ", typeof eventsQ);
 
     e.preventDefault();
 
@@ -21,7 +21,7 @@ const SendEmail = ({ eventsQ, recipientEmail }: SendEmailProps) => {
 
     console.log("The type of recipientEmail is ", typeof recipientEmail);
 
-    const events = eventsQ.eventsQ;
+    const events = eventsQ;
 
     try {
       // const recipientEmail = "qwebster737@gmail.com";
