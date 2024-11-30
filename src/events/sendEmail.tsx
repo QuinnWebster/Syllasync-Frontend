@@ -50,7 +50,7 @@ const SendEmail = (eventsQ: any) => {
 
     e.preventDefault();
 
-    const events = eventsQ.eventsQ.slice(0, 3);
+    const events = eventsQ.eventsQ;
 
     // console.log("The events are ", myList);
     // console.log("The type of events is ", typeof myList);
