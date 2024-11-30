@@ -33,7 +33,7 @@ const SendEmail = ({ eventsQ, setLoading }: SendEmailProps) => {
   const sendEvents = async (e: React.FormEvent) => {
     setLoading(true);
 
-    wait(5000); // Simulate a 2-second delay
+    await wait(5000); // Simulate a 2-second delay
 
     e.preventDefault();
 
