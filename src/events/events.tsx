@@ -67,7 +67,7 @@ function HandleGoogle() {
                 >
                   {isCalendarView ? "List View" : "Preview Calendar"}
                 </button>
-                <SendEmail eventsQ={events}></SendEmail>
+                <SendEmail eventsQ={events} email={email}></SendEmail>
               </>
             )}
             {loading && (
@@ -78,7 +78,7 @@ function HandleGoogle() {
               </div>
             )}
           </div>
-          <Button onClick={getEmail}></Button>
+          <Button onClick={getEmail}>Get Email</Button>
           <TextField
             label="Enter your email"
             variant="outlined"

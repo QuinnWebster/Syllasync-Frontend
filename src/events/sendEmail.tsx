@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "./events.css";
 const apiUrl = import.meta.env.VITE_API_URL_MAIL;
 
-const SendEmail = (eventsQ: any) => {
+const SendEmail = (eventsQ: any, email: any) => {
   const navigate = useNavigate();
 
   //   const events = [
@@ -58,10 +58,8 @@ const SendEmail = (eventsQ: any) => {
     // console.log("The events are ", myList);
     // console.log("The type of events is ", typeof myList);
 
-    console.log("sending events", events);
-
     try {
-      const recipientEmail = "qwebster737@gmail.com";
+      // const recipientEmail = "qwebster737@gmail.com";
 
       const response = await fetch(apiUrl, {
         method: "POST",
@@ -70,7 +68,7 @@ const SendEmail = (eventsQ: any) => {
         },
         body: JSON.stringify({
           events,
-          recipientEmail,
+          email,
         }),
       });
 
