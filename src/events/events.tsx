@@ -7,8 +7,6 @@ import HashLoader from "react-spinners/HashLoader";
 import "./events.css";
 import Banner from "./../components/banner";
 import SendEmail from "./sendEmail";
-import TextField from "@mui/material/TextField";
-import { Button } from "@mui/material";
 
 // const wait = (ms: any) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -37,14 +35,6 @@ function HandleGoogle() {
     setIsCalendarView(!isCalendarView);
   }
 
-  function handleEmailChange(e: any) {
-    setRecipientEmail(e.target.value);
-  }
-
-  function getEmail() {
-    console.log(recipientEmail);
-  }
-
   return (
     <div>
       <Banner signInText={false} wantButtons={true} />
@@ -67,10 +57,7 @@ function HandleGoogle() {
                 >
                   {isCalendarView ? "List View" : "Preview Calendar"}
                 </button>
-                <SendEmail
-                  eventsQ={events}
-                  recipientEmail={recipientEmail} // Pass recipientEmail properly here
-                />
+                <SendEmail eventsQ={events} />
               </>
             )}
             {loading && (
@@ -81,15 +68,6 @@ function HandleGoogle() {
               </div>
             )}
           </div>
-          <Button onClick={getEmail}>Get Email</Button>
-          <TextField
-            label="Enter your email"
-            variant="outlined"
-            type="email"
-            value={recipientEmail}
-            onChange={handleEmailChange}
-            fullWidth
-          />
           <div className="title">
             <h1>{isCalendarView ? "Preview Calendar" : "Events Extracted"}</h1>
           </div>

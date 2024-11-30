@@ -117,6 +117,15 @@ function LandingPage() {
     setLoading(true);
 
     try {
+      // const calendarObjects = [
+      //   {
+      //     subject: "My Subject",
+      //     start: "2022-01-01T00:00:00",
+      //     end: "2022-01-01T01:00:00",
+      //     description: "My Description",
+      //     location: "My Location",
+      //   },
+      // ];
       const res = await fetch(apiUrl, {
         method: "POST",
         headers: {
