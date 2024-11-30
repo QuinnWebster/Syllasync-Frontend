@@ -48,18 +48,17 @@ const ShowList: React.FC<ShowListProps> = ({ events, setEvents }) => {
                   variant="h6"
                   component="div"
                   className="event-title"
-                  sx={{ paddingBottom: "10px" }}
+                  sx={{ paddingBottom: "8px" }}
                 >
                   {event.subject}
                 </Typography>
                 <Typography
                   color="text.secondary"
                   className="event-date"
-                  sx={{ paddingBottom: "10px" }}
+                  sx={{ paddingBottom: "8px" }}
                 >
                   {new Date(event.start).toLocaleString()}
                 </Typography>
-                <br />
                 <Typography color="text.secondary" className="event-location">
                   {event.description}
                 </Typography>

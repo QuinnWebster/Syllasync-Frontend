@@ -99,25 +99,11 @@ function MiniWindow({
           )}
         </div>
 
-        <div className="event-info">
-          <strong>Location:</strong>
-          {isEditing ? (
-            <input
-              type="text"
-              value={editedEvent.location}
-              onChange={handleInputChange("location")}
-              className="edit-input"
-            />
-          ) : (
-            <span> {event.location || "N/A"}</span>
-          )}
-        </div>
-
         <p className="event-info">
-          <strong>Start Date:</strong> {formatDate(event.start.dateTime)}
+          <strong>Start Date:</strong> {new Date(event.start).toLocaleString()}
         </p>
         <p className="event-info">
-          <strong>End:</strong> {formatDate(event.end.dateTime)}
+          <strong>End:</strong> {new Date(event.end).toLocaleString()}
         </p>
 
         <Button variant="contained" color="primary" onClick={handleEditToggle}>
