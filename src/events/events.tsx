@@ -7,6 +7,7 @@ import HashLoader from "react-spinners/HashLoader";
 import "./events.css";
 import Banner from "./../components/banner";
 import SendEmail from "./sendEmail";
+import { Box } from "@mui/material";
 
 // const wait = (ms: any) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -45,23 +46,27 @@ function HandleGoogle() {
               gap: "20px",
             }}
           >
-            <>
-              <button
-                className="addEvent"
-                onClick={() => toggleView()}
-                disabled={loading}
+            <Box>
+              <Box
+                style={{ display: "flex", gap: "10px", alignItems: "center" }}
               >
-                {isCalendarView ? "List View" : "Preview Calendar"}
-              </button>
-              <SendEmail eventsQ={events} setLoading={setLoading} />
-            </>
-            {loading && (
-              <div className="loading">
-                <HashLoader color={"#123abc"} loading={loading} size={50} />
-                <br></br>
-                <p>Sending Email</p>
-              </div>
-            )}
+                <button
+                  className="addEvent"
+                  onClick={() => toggleView()}
+                  disabled={loading}
+                >
+                  {isCalendarView ? "List View" : "Preview Calendar"}
+                </button>
+                <SendEmail eventsQ={events} setLoading={setLoading} />
+              </Box>
+              {loading && (
+                <div className="loading">
+                  <HashLoader color={"#123abc"} loading={loading} size={50} />
+                  <br></br>
+                  <p>Sending Email</p>
+                </div>
+              )}
+            </Box>
           </div>
           <div className="title">
             <h1>{isCalendarView ? "Preview Calendar" : "Events Extracted"}</h1>
