@@ -7,6 +7,7 @@ import HashLoader from "react-spinners/HashLoader";
 import "./events.css";
 import Banner from "./../components/banner";
 import SendEmail from "./sendEmail";
+import TextField from "@mui/material/TextField";
 
 // const wait = (ms: any) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -28,10 +29,15 @@ function HandleGoogle() {
   const [events, setEvents] = useState<Event[]>(message);
   const [loading, setLoading] = useState<boolean>(false);
   const [showButtons, setShowButtons] = useState<boolean>(true);
+  const [email, setEmail] = useState<string>("");
 
   //Switch between calendar view and list view
   function toggleView() {
     setIsCalendarView(!isCalendarView);
+  }
+
+  function handleEmailChange(e: any) {
+    setEmail(e.target.value);
   }
 
   return (
@@ -63,10 +69,18 @@ function HandleGoogle() {
               <div className="loading">
                 <HashLoader color={"#123abc"} loading={loading} size={50} />
                 <br></br>
-                <p>Adding Events to Your Calendar</p>
+                <p>Sending Email</p>
               </div>
             )}
           </div>
+          <TextField
+            label="Enter your email"
+            variant="outlined"
+            type="email"
+            value={email}
+            onChange={handleEmailChange}
+            fullWidth
+          />
           <div className="title">
             <h1>{isCalendarView ? "Preview Calendar" : "Events Extracted"}</h1>
           </div>
