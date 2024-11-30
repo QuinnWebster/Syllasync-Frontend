@@ -3,10 +3,6 @@ import { useNavigate } from "react-router-dom";
 import Banner from "./components/banner";
 
 function AllDone() {
-  // const { message, event } = location.state || {};
-
-  // console.log("All Done message:", message, "Event:", event);
-
   const navigate = useNavigate();
 
   return (
@@ -19,18 +15,14 @@ function AllDone() {
           <br></br>
           <h2>The email containing your events has been sent</h2>
         </div>
-        <div className="all-done-link">
-          <h3>View Your Calendar:</h3>
-          <br></br>
-        </div>
         <div className="all-done-footer">
           <p>Thank you for using our service!</p>
         </div>
+        <button className="Back" onClick={() => navigate("/")}>
+          {" "}
+          Back to Home
+        </button>
       </div>
-      <button className="Back" onClick={() => navigate("/")}>
-        {" "}
-        Back to Home
-      </button>
     </div>
   );
 }

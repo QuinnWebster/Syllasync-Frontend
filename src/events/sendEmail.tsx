@@ -44,7 +44,7 @@ const SendEmail = ({ eventsQ, setLoading }: SendEmailProps) => {
     try {
       setShowPopup(false);
 
-      await wait(5000); // Simulate a delay of 5 seconds
+      await wait(2000);
 
       const response = await fetch(apiUrl, {
         method: "POST",
