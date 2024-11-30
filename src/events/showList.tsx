@@ -4,18 +4,11 @@ import "./showList.css";
 import MiniWindow from "./miniWindow";
 
 type Event = {
-  id: string;
-
-  summary: string;
+  subject: string;
+  start: any;
+  end: any;
   description: string;
-  start: {
-    dateTime: string;
-    timeZone: string;
-  };
-  end: {
-    dateTime: string;
-    timeZone: string;
-  };
+  location: string;
 };
 
 type ShowListProps = {
@@ -38,6 +31,8 @@ const ShowList: React.FC<ShowListProps> = ({ events, setEvents }) => {
     setMiniWindow(true);
   }
 
+  // "start":"2024-09-04T00:00:00","end":"2024-09-04T23:59:00","description"
+
   return (
     <div className="event-list-container">
       <br />
@@ -51,12 +46,10 @@ const ShowList: React.FC<ShowListProps> = ({ events, setEvents }) => {
                   component="div"
                   className="event-title"
                 >
-                  {event.summary}{" "}
+                  {event.subject}{" "}
                 </Typography>
                 <Typography color="text.secondary" className="event-date">
-                  {new Date(event.start.dateTime).toLocaleString("en-CA", {
-                    timeZone: event.start.timeZone,
-                  })}
+                  {event.start.toString()} - {event.end.toString()}
                 </Typography>
                 <Typography color="text.secondary" className="event-location">
                   {event.description}

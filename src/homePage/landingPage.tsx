@@ -1,13 +1,11 @@
 import Banner from "../components/banner";
 import Guide from "../components/guide";
-import { useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
 import { useState, useEffect } from "react";
 import pdf_prev from "./../images/pdf-img.jfif";
 import { useDropzone, Accept } from "react-dropzone";
 import pdfToText from "react-pdftotext";
 import { useNavigate } from "react-router-dom";
 import "./landingPage.css";
-// import axios from "axios";
 import HashLoader from "react-spinners/HashLoader";
 
 type AcceptedFile = File[];
@@ -30,8 +28,6 @@ const apiUrl = import.meta.env.VITE_API_URL;
 // };
 
 function LandingPage() {
-  const session = useSession(); // Tokens
-  const supabase = useSupabaseClient(); // Talk to Supabase
   const [fileName, setFileName] = useState<string>("");
   const [isFileSelected, setIsFileSelected] = useState<boolean>(false);
   const [pdfText, setPdfText] = useState<string>("");
@@ -50,29 +46,6 @@ function LandingPage() {
       return () => clearInterval(interval);
     }
   }, [loading]);
-
-  //Sign out
-  async function signOut(): Promise<void> {
-    console.log("Trying to sign out");
-    await supabase.auth.signOut();
-  }
-
-  //Uses supabaase to sign in with google
-  async function googleSignIn(): Promise<void> {
-    console.log("Trying to sign in with Google");
-    const { error } = await supabase.auth.signInWithOAuth({
-      provider: "google",
-      options: {
-        scopes:
-          "https://www.googleapis.com/auth/calendar https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile",
-        queryParams: { prompt: "select_account" },
-      },
-    });
-    if (error) {
-      alert("Error logging into Google provider with Supabase");
-      console.log(error);
-    }
-  }
 
   // Handles the file drop
   function onDrop(acceptedFiles: AcceptedFile): void {
@@ -160,13 +133,15 @@ function LandingPage() {
 
       const response = await res.json();
 
+      console.log("The response from the AI is:", response);
+
       const calendarObjects = JSON.parse(response.joke).objects;
 
-      if (!isListOfEvents(calendarObjects)) {
-        console.error("Invalid response from the AI");
-        alert("Invalid response from the AI. Please try again.");
-        return;
-      }
+      // if (!isListOfEvents(calendarObjects)) {
+      //   console.error("Invalid response from the AI");
+      //   alert("Invalid response from the AI. Please try again.");
+      //   return;
+      // }
 
       const notes = "My notes";
 
@@ -176,7 +151,6 @@ function LandingPage() {
         state: {
           message: calendarObjects,
           notes: notes,
-          session: session,
         },
       });
     } catch (error) {
@@ -185,108 +159,22 @@ function LandingPage() {
     }
   };
 
-  const handlePrivacyClick = () => {
-    // Navigate to the privacy policy
-    window.location.href = "/consent.html";
-  };
-
-  // try {
-  //   const response = await axios.post(
-  //     `http://localhost:5000/api/getAiResponse`,
-  //     {
-  //       content: pdfText,
-  //     }
-  //   );
-
-  //   console.log("Response", response.data.message);
-
-  //   const aiResponse = response.data.message;
-
-  //   const calendarObjects = aiResponse.objects;
-
-  //   const notes = aiResponse.additionalNotes;
-
-  //   if (!isListOfEvents(calendarObjects)) {
-  //     console.error("Invalid response from the AI");
-  //     alert("Invalid response from the AI. Please try again.");
-  //     return;
-  //   }
-
-  //   // const calendarObjects = [
-  //   //   {
-  //   //     summary: "Quiz 1",
-  //   //     location: "",
-  //   //     description: "Quiz 1 for section 1",
-  //   //     start: {
-  //   //       dateTime: "2024-11-05T09:00:00",
-  //   //       timeZone: "Canada/Pacific",
-  //   //     },
-  //   //     end: {
-  //   //       dateTime: "2024-11-05T09:50:00",
-  //   //       timeZone: "Canada/Pacific",
-  //   //     },
-  //   //     colorId: "1",
-  //   //   },
-  //   // ];
-
-  //   // const notes = "My notes";
-
-  //   setLoading(false);
-
-  //   navigate("/events/events", {
-  //     state: {
-  //       message: calendarObjects,
-  //       notes: notes,
-  //       session: session,
-  //     },
-  //   });
-  // } catch (error) {
-  //   setLoading(false);
-  //   console.error("Error fetching data:", error);
-  //   alert("There was an error sending the data. Please try again.");
-  // }
-
   return (
     <div>
-      {session ? (
-        <Banner
-          googleSignIn={googleSignIn}
-          signOut={signOut}
-          signInText={false}
-          wantButtons={true}
-        />
-      ) : (
-        <Banner
-          googleSignIn={googleSignIn}
-          signOut={signOut}
-          signInText={true}
-          wantButtons={false}
-        />
-      )}
+      <Banner signInText={false} wantButtons={true} />
+      <>
+        <br />
+        <h1 className="greeting">Hey</h1>
 
-      {session ? (
-        <>
-          <br />
-          <h1 className="greeting">
-            Hey
-            {session.user.user_metadata?.full_name ||
-              session.user.user_metadata?.name ||
-              session.user.email}
-          </h1>
-        </>
-      ) : (
-        <></>
-      )}
-      <br />
+        <br />
 
-      <div className="text-container">
-        <h3>
-          Welcome to Syllasyncc, the tool that puts your syllabus in your
-          calendar!
-        </h3>
-      </div>
-      <div>
-        {session ? (
+        <div className="text-container">
+          <h3>
+            Welcome to Syllasyncc, the tool that puts your syllabus in your
+            calendar!
+          </h3>
+        </div>
+        <div>
           <>
             <div>
               <div className="instructions">
@@ -328,26 +216,15 @@ function LandingPage() {
                   <div className="loading">
                     <HashLoader color={"#237fe2"} loading={loading} size={40} />
                     <br />
-                    {/* <p> Extracting Dates </p> */}
-
                     <p>Extracting Dates {".".repeat(dotCount)}</p>
                   </div>
                 )}
               </div>
             </div>
             <Guide></Guide>
-            <button onClick={handlePrivacyClick}>View Privacy Policy</button>
           </>
-        ) : (
-          <div className="signed-out">
-            <br></br>
-            <h2>Sign in to get started!</h2>
-            <button className="submit-button" onClick={googleSignIn}>
-              Sign in with Google
-            </button>
-          </div>
-        )}
-      </div>
+        </div>
+      </>
     </div>
   );
 }
