@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "./events.css";
 const apiUrl = import.meta.env.VITE_API_URL_MAIL;
 
-const SendEmail = (eventsQ: any, email: any) => {
+const SendEmail = (eventsQ: any, recipientEmail: any) => {
   const navigate = useNavigate();
 
   //   const events = [
@@ -68,7 +68,7 @@ const SendEmail = (eventsQ: any, email: any) => {
         },
         body: JSON.stringify({
           events,
-          email,
+          recipientEmail,
         }),
       });
 
