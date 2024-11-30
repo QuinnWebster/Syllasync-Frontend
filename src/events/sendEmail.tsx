@@ -55,6 +55,8 @@ const SendEmail = (eventsQ: any) => {
     // console.log("The events are ", myList);
     // console.log("The type of events is ", typeof myList);
 
+    console.log("sending events", events);
+
     try {
       const recipientEmail = "qwebster737@gmail.com";
 
