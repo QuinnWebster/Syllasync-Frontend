@@ -3,7 +3,12 @@ import { useNavigate } from "react-router-dom";
 import "./events.css";
 const apiUrl = import.meta.env.VITE_API_URL_MAIL;
 
-const SendEmail = (eventsQ: any, recipientEmail: string) => {
+type SendEmailProps = {
+  eventsQ: any;
+  recipientEmail: string;
+};
+
+const SendEmail = ({ eventsQ, recipientEmail }: SendEmailProps) => {
   const navigate = useNavigate();
 
   const sendEvents = async (e: React.FormEvent) => {

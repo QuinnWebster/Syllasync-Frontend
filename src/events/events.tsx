@@ -69,8 +69,8 @@ function HandleGoogle() {
                 </button>
                 <SendEmail
                   eventsQ={events}
-                  recipientEmail={recipientEmail}
-                ></SendEmail>
+                  recipientEmail={recipientEmail} // Pass recipientEmail properly here
+                />
               </>
             )}
             {loading && (
@@ -86,7 +86,7 @@ function HandleGoogle() {
             label="Enter your email"
             variant="outlined"
             type="email"
-            value={email}
+            value={recipientEmail}
             onChange={handleEmailChange}
             fullWidth
           />
