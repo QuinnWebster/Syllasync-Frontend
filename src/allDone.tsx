@@ -17,19 +17,11 @@ function AllDone() {
         <div className="all-done-title">
           <h1>🎉 Congratulations!</h1>
           <br></br>
-          <h2>All Events Have Been Added to Your Calendar</h2>
+          <h2>The email containing your events has been sent</h2>
         </div>
         <div className="all-done-link">
           <h3>View Your Calendar:</h3>
           <br></br>
-          <a
-            className="calendar-link"
-            href="https://calendar.google.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Open Google Calendar
-          </a>
         </div>
         <div className="all-done-footer">
           <p>Thank you for using our service!</p>

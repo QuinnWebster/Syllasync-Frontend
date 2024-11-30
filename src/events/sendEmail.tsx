@@ -1,8 +1,11 @@
 // import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import "./events.css";
 const apiUrl = import.meta.env.VITE_API_URL_MAIL;
 
 const SendEmail = (eventsQ: any) => {
+  const navigate = useNavigate();
+
   //   const events = [
   //     {
   //       subject: "Event 1: Introduction to AI",
@@ -70,6 +73,8 @@ const SendEmail = (eventsQ: any) => {
           recipientEmail,
         }),
       });
+
+      navigate("/allDone");
 
       if (!response.ok) {
         throw new Error("Failed to fetch data from the server");
