@@ -9,8 +9,6 @@ import Banner from "./../components/banner";
 import SendEmail from "./sendEmail";
 import { Box } from "@mui/material";
 
-// const wait = (ms: any) => new Promise((resolve) => setTimeout(resolve, ms));
-
 type Event = {
   subject: string;
   start: any;

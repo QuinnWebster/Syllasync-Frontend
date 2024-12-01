@@ -17,7 +17,7 @@ type ShowListProps = {
 
 const ShowList: React.FC<ShowListProps> = ({ events, setEvents }) => {
   const [showMiniWindow, setMiniWindow] = useState(false);
-  const [currentEvent, setCurrentEvent] = useState({});
+  const [currentEvent, setCurrentEvent] = useState({} as Event);
   const [isEditing, setIsEditing] = useState(false);
 
   function closeModal() {
@@ -29,8 +29,6 @@ const ShowList: React.FC<ShowListProps> = ({ events, setEvents }) => {
     setCurrentEvent(event);
     setMiniWindow(true);
   }
-
-  // "start":"2024-09-04T00:00:00","end":"2024-09-04T23:59:00","description"
 
   return (
     <div className="event-list-container">

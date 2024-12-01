@@ -26,20 +26,17 @@ function LandingPage() {
   const [loading, setLoading] = useState<boolean>(false);
   const [dotCount, setDotCount] = useState(1);
 
-  //Allows you to navigate to a different page
   const navigate = useNavigate();
 
-  //Used for the loading animation
   useEffect(() => {
     if (loading) {
       const interval = setInterval(() => {
         setDotCount((prev) => (prev % 3) + 1);
-      }, 500); // Update every 500ms for a smooth effect
+      }, 500);
       return () => clearInterval(interval);
     }
   }, [loading]);
 
-  // Handles the file drop
   function onDrop(acceptedFiles: AcceptedFile): void {
     const file = acceptedFiles[0];
     if (file.type !== "application/pdf") {
@@ -51,7 +48,6 @@ function LandingPage() {
     extractTextFromPDF(file);
   }
 
-  // Function to extract text from the dropped PDF file
   async function extractTextFromPDF(file: File) {
     if (file.type === "application/pdf") {
       try {
@@ -76,7 +72,6 @@ function LandingPage() {
     accept: ".pdf" as unknown as Accept,
   });
 
-  //Checks if the response from the AI is a list of events
   function isListOfEvents(aiResponse: any): aiResponse is Event[] {
     return (
       Array.isArray(aiResponse) &&
@@ -91,7 +86,6 @@ function LandingPage() {
     );
   }
 
-  //On submit pdf
   const handleSubmit = async () => {
     if (!pdfText.trim()) {
       alert(
@@ -200,7 +194,7 @@ function LandingPage() {
                   onClick={() => {
                     setTimeout(handleSubmit, 100);
                   }}
-                  disabled={!isFileSelected || loading} // Disable button until a file is selected
+                  disabled={!isFileSelected || loading}
                 >
                   Submit Syllabus
                 </button>

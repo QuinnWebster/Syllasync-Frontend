@@ -1,4 +1,4 @@
-import "./allDone.css"; // Import the CSS file for styling
+import "./allDone.css";
 import { useNavigate } from "react-router-dom";
 import Banner from "./components/banner";
 

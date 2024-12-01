@@ -1,6 +1,4 @@
-// src/App.tsx
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import "./App.css";
 import LandingPage from "./homePage/landingPage";
 import Events from "./events/events";
 import AllDone from "./allDone";

@@ -24,11 +24,11 @@ const SendEmail = ({ eventsQ, setLoading }: SendEmailProps) => {
   };
 
   const handleSendClick = () => {
-    setShowPopup(true); // Show popup when button is clicked
+    setShowPopup(true);
   };
 
   const handleClosePopup = () => {
-    setShowPopup(false); // Close popup without submitting
+    setShowPopup(false);
   };
 
   const sendEvents = async (e: React.FormEvent) => {
@@ -39,7 +39,7 @@ const SendEmail = ({ eventsQ, setLoading }: SendEmailProps) => {
       return;
     }
 
-    setLoading(true); // Start loading
+    setLoading(true);
 
     try {
       setShowPopup(false);
@@ -65,7 +65,7 @@ const SendEmail = ({ eventsQ, setLoading }: SendEmailProps) => {
     } catch (error) {
       console.error(error);
     } finally {
-      setLoading(false); // Stop loading after the operation
+      setLoading(false);
     }
   };
 

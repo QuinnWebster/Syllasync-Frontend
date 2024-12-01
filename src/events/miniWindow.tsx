@@ -1,8 +1,25 @@
-import React, { useRef, useEffect, useState } from "react";
+import { useRef, useEffect, useState } from "react";
 import "./miniWindow.css";
 import Button from "@mui/material/Button";
 
-function MiniWindow({
+type Event = {
+  subject: string;
+  start: any;
+  end: any;
+  description: string;
+};
+
+type MiniWindowProps = {
+  show: boolean;
+  handleClose: () => void;
+  event: Event;
+  events: Event[];
+  setEvents: React.Dispatch<React.SetStateAction<Event[]>>;
+  isEditing: boolean;
+  setIsEditing: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+const MiniWindow = ({
   show,
   handleClose,
   event,
@@ -10,25 +27,22 @@ function MiniWindow({
   setEvents,
   isEditing,
   setIsEditing,
-}) {
-  const modalRef = useRef();
-  // const [isEditing, setIsEditing] = useState(false);
+}: MiniWindowProps) => {
+  const modalRef = useRef(); //Used to close the modal when clicking outside of it
   const [editedEvent, setEditedEvent] = useState({
-    summary: event.summary || "",
+    subject: event.subject || "",
     description: event.description || "",
-    location: event.location || "",
   });
 
-  // Sync initial values on event change
+  //When the event changes, update the edited event
   useEffect(() => {
     setEditedEvent({
-      summary: event.summary || "",
+      subject: event.subject || "",
       description: event.description || "",
-      location: event.location || "",
     });
   }, [event]);
 
-  // Handle closing the modal when clicking outside
+  //Close the modal when clicking outside of it
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (modalRef.current && !modalRef.current.contains(e.target)) {
@@ -39,6 +53,7 @@ function MiniWindow({
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [show, handleClose]);
 
+  //Dont understand this part
   const handleEditToggle = () => {
     if (isEditing) {
       const updatedEvents = events.map((e) =>
@@ -60,9 +75,7 @@ function MiniWindow({
     }
   };
 
-  const formatDate = (date) => new Date(date).toLocaleString();
-
-  if (!event || !event.start || !event.end) return null;
+  // if (!event || !event.start || !event.end) return null;
 
   return (
     <div className={`modal ${show ? "show" : ""}`}>
@@ -115,6 +128,6 @@ function MiniWindow({
       </div>
     </div>
   );
-}
+};
 
 export default MiniWindow;
