@@ -123,8 +123,6 @@ function LandingPage() {
 
       const calendarObjects = JSON.parse(response.joke).objects;
 
-      console.log("The response from the AI is:", calendarObjects);
-
       if (!isListOfEvents(calendarObjects)) {
         console.error("Invalid response from the AI");
         alert("Invalid response from the AI. Please try again.");
@@ -144,6 +142,7 @@ function LandingPage() {
     } catch (error) {
       setLoading(false);
       console.error("Error fetching data:", error);
+      alert("Error fetching data. Please try again.");
     }
   };
 

@@ -40,10 +40,9 @@ const SendEmail = ({ eventsQ, setLoading }: SendEmailProps) => {
       return;
     }
 
-    setLoading(true);
-
     try {
       setShowPopup(false);
+      setLoading(true);
 
       await wait(2000);
 
@@ -58,15 +57,16 @@ const SendEmail = ({ eventsQ, setLoading }: SendEmailProps) => {
         }),
       });
 
-      console.log("The response is:", response);
-
       if (!response.ok) {
-        throw new Error("Failed to fetch data from the server");
+        const errorData = await response.json();
+        const errorMessage = errorData.error || "Failed to send events";
+        throw new Error(errorMessage);
       }
 
       navigate("/allDone");
     } catch (error) {
       console.error(error);
+      alert(`Error Sending Email, Please try again.`);
     } finally {
       setLoading(false);
     }
