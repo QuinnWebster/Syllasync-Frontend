@@ -58,6 +58,8 @@ const SendEmail = ({ eventsQ, setLoading }: SendEmailProps) => {
         }),
       });
 
+      console.log("The response is:", response);
+
       if (!response.ok) {
         throw new Error("Failed to fetch data from the server");
       }
