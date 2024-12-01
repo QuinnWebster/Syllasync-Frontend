@@ -157,7 +157,7 @@ function LandingPage() {
 
         <div className="text-container">
           <h3>
-            Welcome to Syllasync, the tool that puts your syllabus in your
+            Welcome to Syllasyncc, the tool that puts your syllabus in your
             calendar!
           </h3>
         </div>
