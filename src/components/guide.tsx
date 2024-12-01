@@ -1,45 +1,6 @@
 import { CSSProperties } from "react";
 import { FaUpload, FaCalendarAlt, FaListUl, FaCalendar } from "react-icons/fa";
 
-const Guide = () => {
-  return (
-    <div style={styles.container}>
-      <h2 style={styles.heading}>How It Works</h2>
-      <div style={styles.guideContainer}>
-        <div style={styles.step}>
-          <FaUpload style={styles.icon} />
-          <h4 style={styles.stepTitle}>Upload Your Syllabus as a PDF</h4>
-          <p style={styles.description}>
-            Drag and drop your syllabus file or select it from your computer.
-          </p>
-        </div>
-        <div style={styles.step}>
-          <FaCalendarAlt style={styles.icon} />
-          <h4 style={styles.stepTitle}>Extract Key Dates</h4>
-          <p style={styles.description}>
-            AI finds due dates for assignments, quizzes, and exams.
-          </p>
-        </div>
-        <div style={styles.step}>
-          <FaListUl style={styles.icon} />
-          <h4 style={styles.stepTitle}>Preview Events</h4>
-          <p style={styles.description}>
-            Review events in a list or preview them in a calendar view.
-          </p>
-        </div>
-        <div style={styles.step}>
-          <FaCalendar style={styles.icon} />
-          <h4 style={styles.stepTitle}>Get Your Events via Email</h4>
-          <p style={styles.description}>
-            Enter your email address to receive a detailed list of your events.
-            You can easily add them to your calendar from there.
-          </p>
-        </div>
-      </div>
-    </div>
-  );
-};
-
 const styles: Record<string, CSSProperties> = {
   container: {
     textAlign: "center",
@@ -82,6 +43,45 @@ const styles: Record<string, CSSProperties> = {
     fontSize: "1rem",
     color: "#555",
   },
+};
+
+const Guide = () => {
+  return (
+    <div style={styles.container}>
+      <h2 style={styles.heading}>How It Works</h2>
+      <div style={styles.guideContainer}>
+        <div style={styles.step}>
+          <FaUpload style={styles.icon} />
+          <h4 style={styles.stepTitle}>Upload Your Syllabus as a PDF</h4>
+          <p style={styles.description}>
+            Drag and drop your syllabus file or select it from your computer.
+          </p>
+        </div>
+        <div style={styles.step}>
+          <FaCalendarAlt style={styles.icon} />
+          <h4 style={styles.stepTitle}>Extract Key Dates</h4>
+          <p style={styles.description}>
+            AI finds due dates for assignments, quizzes, and exams.
+          </p>
+        </div>
+        <div style={styles.step}>
+          <FaListUl style={styles.icon} />
+          <h4 style={styles.stepTitle}>Preview Events</h4>
+          <p style={styles.description}>
+            Review events in a list or preview them in a calendar view.
+          </p>
+        </div>
+        <div style={styles.step}>
+          <FaCalendar style={styles.icon} />
+          <h4 style={styles.stepTitle}>Get Your Events via Email</h4>
+          <p style={styles.description}>
+            Enter your email address to receive a detailed list of your events.
+            You can easily add them to your calendar from there.
+          </p>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default Guide;

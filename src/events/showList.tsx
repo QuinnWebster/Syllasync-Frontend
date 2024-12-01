@@ -54,7 +54,11 @@ const ShowList: React.FC<ShowListProps> = ({ events, setEvents }) => {
                   className="event-date"
                   sx={{ paddingBottom: "8px" }}
                 >
-                  {new Date(event.start).toLocaleString()}
+                  {new Intl.DateTimeFormat("en-US", {
+                    month: "long",
+                    day: "numeric",
+                    year: "numeric",
+                  }).format(new Date(event.start))}{" "}
                 </Typography>
                 <Typography color="text.secondary" className="event-location">
                   {event.description}

@@ -13,6 +13,7 @@ type SendEmailProps = {
 
 const SendEmail = ({ eventsQ, setLoading }: SendEmailProps) => {
   const navigate = useNavigate();
+
   const [recipientEmail, setRecipientEmail] = useState<string>("");
   const [showPopup, setShowPopup] = useState<boolean>(false);
 

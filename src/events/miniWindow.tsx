@@ -28,7 +28,7 @@ const MiniWindow = ({
   isEditing,
   setIsEditing,
 }: MiniWindowProps) => {
-  const modalRef = useRef(); //Used to close the modal when clicking outside of it
+  const modalRef = useRef<HTMLDivElement | null>(null);
   const [editedEvent, setEditedEvent] = useState({
     subject: event.subject || "",
     description: event.description || "",
@@ -44,8 +44,11 @@ const MiniWindow = ({
 
   //Close the modal when clicking outside of it
   useEffect(() => {
-    const handleClickOutside = (e) => {
-      if (modalRef.current && !modalRef.current.contains(e.target)) {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (
+        modalRef.current &&
+        !(modalRef.current as HTMLElement).contains(e.target as Node)
+      ) {
         handleClose();
       }
     };
@@ -64,9 +67,11 @@ const MiniWindow = ({
     setIsEditing(!isEditing);
   };
 
-  const handleInputChange = (field) => (e) => {
-    setEditedEvent((prev) => ({ ...prev, [field]: e.target.value }));
-  };
+  const handleInputChange =
+    (field: keyof typeof editedEvent) =>
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      setEditedEvent((prev) => ({ ...prev, [field]: e.target.value }));
+    };
 
   const deleteEvent = () => {
     if (window.confirm("Are you sure you want to delete this event?")) {
@@ -74,8 +79,6 @@ const MiniWindow = ({
       handleClose();
     }
   };
-
-  // if (!event || !event.start || !event.end) return null;
 
   return (
     <div className={`modal ${show ? "show" : ""}`}>
@@ -89,12 +92,12 @@ const MiniWindow = ({
           {isEditing ? (
             <input
               type="text"
-              value={editedEvent.summary}
-              onChange={handleInputChange("summary")}
+              value={editedEvent.subject}
+              onChange={handleInputChange("subject")}
               className="edit-input"
             />
           ) : (
-            <span> {event.summary || "N/A"}</span>
+            <span> {event.subject || "N/A"}</span>
           )}
         </div>
 
@@ -113,10 +116,21 @@ const MiniWindow = ({
         </div>
 
         <p className="event-info">
-          <strong>Start Date</strong> {new Date(event.start).toLocaleString()}
+          <strong>Start Date:</strong>{" "}
+          {new Intl.DateTimeFormat("en-US", {
+            month: "long",
+            day: "numeric",
+            year: "numeric",
+          }).format(new Date(event.start))}{" "}
         </p>
+
         <p className="event-info">
-          <strong>End:</strong> {new Date(event.end).toLocaleString()}
+          <strong>End:</strong>{" "}
+          {new Intl.DateTimeFormat("en-US", {
+            month: "long",
+            day: "numeric",
+            year: "numeric",
+          }).format(new Date(event.end))}{" "}
         </p>
 
         <Button variant="contained" color="primary" onClick={handleEditToggle}>
