@@ -116,21 +116,11 @@ const MiniWindow = ({
         </div>
 
         <p className="event-info">
-          <strong>Start Date:</strong>{" "}
-          {new Intl.DateTimeFormat("en-US", {
-            month: "long",
-            day: "numeric",
-            year: "numeric",
-          }).format(new Date(event.start))}{" "}
+          <strong>Start Date:</strong> {new Date(event.start).toLocaleString()}
         </p>
 
         <p className="event-info">
-          <strong>End:</strong>{" "}
-          {new Intl.DateTimeFormat("en-US", {
-            month: "long",
-            day: "numeric",
-            year: "numeric",
-          }).format(new Date(event.end))}{" "}
+          <strong>End:</strong> {new Date(event.end).toLocaleString()}
         </p>
 
         <Button variant="contained" color="primary" onClick={handleEditToggle}>
