@@ -1,50 +1,21 @@
-# React + TypeScript + Vite
+## Syllasync  
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Syllasync is a website I built to solve a common issue faced by university students: **manually adding syllabus events to their calendar**.  
 
-Currently, two official plugins are available:
+### The Problem  
+At the start of each semester, students spend about **10 minutes per class syllabus** adding events to their calendar. For a full course load, this takes almost an hour! I figured there had to be a better way.  
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### The Solution  
+Syllasync uses **AI** to make the process fast and seamless.  
 
-## Expanding the ESLint configuration
+### How It Works  
+1. The student uploads their syllabus.  
+2. The **AI extracts all important dates and details**.  
+3. The extracted events are displayed in a clear, organized list.  
+4. The user can:  
+   - **Preview their calendar** with the events.  
+   - **Receive an email** with all events in an ICS file.  
+5. With the ICS file, students can add all events to their calendar with just **one click**.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
-
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+The whole process takes about 1 minute, totally speeding up the time for students to add syllabus events to their calendar
